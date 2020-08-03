@@ -4,7 +4,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,9 +52,10 @@ public class EurekaClientController {
 		LOGGER.debug("instance {}:", userServiceInstance);
 		String uri = userServiceInstance.getUri().toString()+"/"+mapping;
 		LOGGER.debug("URI {}", uri);
-		ResponseEntity <Object[]> res = template.exchange(uri.toString(), HttpMethod.GET, null, Object[].class);
+		ResponseEntity<Object[]> res = template.exchange(uri.toString(), HttpMethod.GET, null, Object[].class);
 		
 		return res.getBody();
 	}
 	
 }
+

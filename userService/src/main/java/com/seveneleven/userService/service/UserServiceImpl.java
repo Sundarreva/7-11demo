@@ -1,6 +1,5 @@
 package com.seveneleven.userService.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -12,8 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.seveneleven.userService.controller.UserController;
-import com.seveneleven.userService.model.Role;
+import com.seveneleven.userService.exception.UserAlreadyExistException;
 import com.seveneleven.userService.model.User;
 import com.seveneleven.userService.repository.RoleRepository;
 import com.seveneleven.userService.repository.UserRepository;
@@ -47,10 +45,16 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public User saveUser(User user) {
+	public User saveUser(User user) throws UserAlreadyExistException {
 		LOGGER.info("Start");
 		LOGGER.debug("user {}", user);
 		PasswordEncoder encoder = new BCryptPasswordEncoder();
+		
+		if(userRepository.findByName(user.getName()) != null) {
+			LOGGER.info("User exist Exception");
+			throw new UserAlreadyExistException("User already exist");
+		}
+		
 		
 		user.setPassword(encoder.encode(user.getPassword()));
 		user.setRole(roleRepository.findById(2l).get());

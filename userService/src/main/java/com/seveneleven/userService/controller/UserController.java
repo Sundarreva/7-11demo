@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.seveneleven.userService.exception.UserAlreadyExistException;
 import com.seveneleven.userService.model.User;
 import com.seveneleven.userService.service.UserService;
 
@@ -40,7 +41,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/signup")
-	public User saveUser(@RequestBody User user) {
+	public User saveUser(@RequestBody User user) throws UserAlreadyExistException{
 		
 		LOGGER.info("Start");
 		return userService.saveUser(user);

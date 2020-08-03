@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -61,6 +62,7 @@ public class EmployeeController {
 		return sum;
 	}
 	
+	@Async
 	@GetMapping("/salary/{start}/{end}")
 	public List<Employee> getEmployeeBySalaryRange(@PathVariable String start , @PathVariable String end){
 		
@@ -85,7 +87,7 @@ public class EmployeeController {
 		return employeeService.updateEmployees(employee);
 	}
 
-	@DeleteMapping("/delete/id/{id}")
+	@DeleteMapping("/id/{id}")
 	public String deleteEmployeeById(@PathVariable long id) {
 		
 		LOGGER.info("Start");
@@ -93,7 +95,7 @@ public class EmployeeController {
 		return employeeService.deleteEmployeesById(id);
 	}
 
-	@DeleteMapping("/delete/designation/{designation}")
+	@DeleteMapping("/designation/{designation}")
 	public String deleteAllEmployeeByDesignation(@PathVariable String designation) {
 		
 		LOGGER.info("Start");
