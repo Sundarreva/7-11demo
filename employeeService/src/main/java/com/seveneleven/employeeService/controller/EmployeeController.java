@@ -43,7 +43,8 @@ public class EmployeeController {
 		
 		return employeeService.getEmployeesById(id);
 	}
-
+	
+	//@Async
 	@GetMapping("/designation/{designation}")
 	public List<Employee> getEmployeesByDesignation(@PathVariable String designation) {
 
@@ -62,7 +63,6 @@ public class EmployeeController {
 		return sum;
 	}
 	
-	@Async
 	@GetMapping("/salary/{start}/{end}")
 	public List<Employee> getEmployeeBySalaryRange(@PathVariable String start , @PathVariable String end){
 		
