@@ -45,10 +45,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.anyRequest().authenticated().and()
 				.addFilter(new JwtAuthorizationFilter(authenticationManager()));
 
-//		.authorizeRequests()
-//		.antMatchers("/medicare").permitAll()
-//		.antMatchers("/medicare/sign-up/patient").anonymous()
-//		.anyRequest().authenticated();
 		LOGGER.info("END");
 	}
 
