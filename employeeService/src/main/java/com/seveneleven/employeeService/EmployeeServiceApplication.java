@@ -9,12 +9,11 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 public class EmployeeServiceApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(EmployeeServiceApplication.class, args);
-<<<<<<< HEAD
-		//change on branch in local device check
-=======
-		//change on master branch in local device
->>>>>>> refs/remotes/origin/master
+
+		// change on branch in local device check
+		// change on master branch in local device
 	}
 
 }
