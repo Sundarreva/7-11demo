@@ -1,0 +1,13 @@
+server:
+  port: 8094
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Sundarreva/config_app_prop
+#          uri: file:\\\C:\Codes\cloudconfig config_app_prop\config_app_prop
+#          search-paths: config_app_prop
+          
+          
